@@ -5,7 +5,7 @@ const RestaurantCont = (props) => {
   const { name, costForTwo, cuisines, avgRating, sla, locality, areaName } = resData?.info;
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="res-card relative dark:bg-gray-900 dark:shadow-lg dark:shadow-indigo-600">
+    <div className="res-card relative shadow-lg shadow-[#cacaca] dark:bg-gray-900 dark:shadow-lg dark:shadow-indigo-600">
       <div className="res-logo-cont">
         <img className="res-logo" src={LOGO_URL + resData.info.cloudinaryImageId}
         />

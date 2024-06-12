@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
-import DarkModeToggle from "./DarkModeToggle";
-
+import { SEARCH_ICON } from "../utils/constants"
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [showRatingOptions, setShowRatingOptions] = useState(false);
   const [searchText, setSearchText] = useState("");
-
   const fetchData = async () => {
     try {
       const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.44250&lng=81.85170&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -48,17 +46,12 @@ const Body = () => {
     );
     setFilteredList(filtered);
   };
-
-  const PromotedRestaurantCard = WithPromotedRestauratCard(RestaurantCont);
-  let restnumber = 1;
-  let j = 1;
-
   return (
     <div className="body mx-[70px]">
-      <div className="filter">
-        <div className="search-cont">
+      <div className="filter items-center">
+        <div className="search-cont relative">
           <input
-            className="border-2 mr-2 border-blue-500 rounded-lg py-2 px-4 text-gray-900 dark:text-white leading-tight focus:outline-none focus:border-blue-700 bg-white dark:bg-gray-700 focus:bg-white w-full shadow-md hover:shadow-lg"
+            className="border-[2px] mr-2 border-gray-300 rounded-2xl py-2 pl-4 pr-32 text-gray-900 dark:text-white outline-none bg-white dark:bg-gray-700 focus:bg-white w-full shadow-md hover:shadow-lg"
             type="text"
             value={searchText}
             onKeyPress={(e) => {
@@ -67,17 +60,17 @@ const Body = () => {
             placeholder="Search Your Restaurant"
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button
-            className="bg-indigo-600 dark:bg-indigo-200 dark:shadow-md dark:shadow-white dark:hover:bg-indigo-300 hover:bg-blue-700 text-white dark:text-black font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-95"
-            onClick={handleSearch}
-          >
-            Search         
-           </button>
-
+          <span onClick={handleSearch} className="absolute right-2 flex items-center justify-center rounded-r-2xl h-full w-auto bg-gray-300 px-6">
+            <img
+              className="w-auto h-3/4"
+              src={SEARCH_ICON}
+              alt=""
+            />
+          </span>
         </div>
         <div className="rating-cont">
-          <button className="flex items-center mr-7 bg-blue-500 dark:bg-blue-200 dark:text-black dark:shadow-md dark:shadow-white text-white px-3 py-2 rounded-lg shadow-md transition duration-300 ease-in-out transform scale-90 ">
-            <svg xmlns="http://www.w3.org/2000/svg" onClick={toggleRatingOptions} fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-black text-white mr-2">
+          <button className="flex items-center mr-7 bg-blue-500 dark:bg-gray-300 dark:text-black dark:shadow-md dark:shadow-white text-white px-3 py-2 rounded-lg shadow-md scale-90 ">
+            <svg xmlns="http://www.w3.org/2000/svg" onClick={toggleRatingOptions} fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-black transition-all duration-300 ease-in-out transform  text-white mr-2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
             </svg>
             <h4 class="text-lg font-bold">Top-Rated Restaurants</h4>
@@ -94,12 +87,9 @@ const Body = () => {
       </div>
       <div className="res-container relative">
         {filteredList.map((restaurant) => {
-          const isPromoted = (restnumber === j);
-          if (isPromoted) j += 5;
-          restnumber++;
           return (
             <Link to={"/resmenu/" + restaurant.info.id} style={{ textDecoration: 'none', color: 'inherit' }} key={restaurant.info.id}>
-              {isPromoted ? <PromotedRestaurantCard resData={restaurant} /> : <RestaurantCont resData={restaurant} />}
+              {<RestaurantCont resData={restaurant} />}
             </Link>
           );
         })}

@@ -27,7 +27,11 @@ const Carts=()=>{
           </div>
       }
       {
-        cartItems.length>0 && <Link to="/"><div className="flex justify-center"><button className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">Shop More</button></div></Link>
+        cartItems.length>0 && 
+          <div>
+              <Link to="/"><div className="flex justify-center"><button className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">Shop More</button></div></Link>
+              {/* <Link to="/"><div className="flex justify-center"><button className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">Buy Now</button></div></Link> */}
+          </div>
       }
     </div>
   );
