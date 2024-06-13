@@ -16,7 +16,7 @@ const CartItemCard = ({ items }) => {
     const dispatch = useDispatch();
 
     const handleRemoveFromCart = (item) => {
-        console.log(item)
+        // console.log(item)
         dispatch(removeItem(item?.card?.info?.id));
     };
 

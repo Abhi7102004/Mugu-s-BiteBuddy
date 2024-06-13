@@ -39,18 +39,18 @@ const Footer = () => {
           <h3 className='dark:text-white'>Follow Us</h3>
           <ul>
             <li>
-              <a href="https://www.facebook.com/" target='_blank' className='dark:text-white'>
-                <i className="fab fa-facebook-f"></i> Facebook
+              <a href="https://www.facebook.com/" target='_blank' className='dark:text-white hover:dark:text-gray-400'>
+                <i className="fab fa-facebook-f "></i> Facebook
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/"  target='_blank'  className='dark:text-white'>
-                <i className="fab fa-instagram"></i> Instagram
+              <a href="https://www.instagram.com/"  target='_blank'  className='dark:text-white  hover:dark:text-gray-400'>
+                <i className="fab fa-instagram "></i> Instagram
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/"  target='_blank' className='dark:text-white'>
-                <i className="fab fa-twitter"></i> Twitter
+              <a href="https://twitter.com/"  target='_blank' className='dark:text-white  hover:dark:text-gray-400'>
+                <i className="fab fa-twitter "></i> Twitter
               </a>
             </li>
           </ul>

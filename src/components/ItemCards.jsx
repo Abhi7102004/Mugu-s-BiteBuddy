@@ -12,6 +12,7 @@ const ItemCards = ({ items }) => {
             [id]: !prevState[id]
         }));
     };
+    // console.log(items);
     const dispatch=useDispatch();
     const handleAddToCart=(item)=>{
         dispatch(addItem(item));

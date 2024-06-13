@@ -24,7 +24,6 @@ const RestaurantCont = (props) => {
       <h4 className="foodtype dark:text-white">{cuisines.join(", ")}</h4>
       <div className="rating-time dark:text-white">
         <h4 className="rating dark:text-white">⭐{avgRating}</h4>
-        <h4 className="time dark:text-white">{sla.slaString}</h4>
       </div>
       <p className="address dark:text-white">{locality + "," + areaName}</p>
     </div>

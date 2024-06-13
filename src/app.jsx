@@ -12,6 +12,9 @@ import Register from "./components/Register";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import cartStore from "./utils/CartStore";
+import { BuyItems } from "./components/BuyItems";
+import { Review } from "./components/Review";
+import { Profile } from "./components/Profile";
 const About = lazy(() => import("./components/About"));
 const AppLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -66,6 +69,23 @@ const appRouter = createBrowserRouter([
         path: "/resMenu/:resId",
         element: <ResMenu />,
       },
+      {
+        path:"/buy",
+        element:<BuyItems/>
+      },
+      {
+        path:"/profileview",
+        children:[
+          {
+            path:"profile",
+            element:<Profile/>
+          },
+          {
+            path:"review",
+            element:<Review/>
+          }
+        ]
+      }
     ],
     errorElement: <Error />,
   },
