@@ -8,10 +8,10 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isValidUserId, setIsValidUserId] = useState(true);
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const [isValidPassword, setIsValidPassword] = useState(true);
-  const [isValidConfirmPassword, setIsValidConfirmPassword] = useState(true);
+  const [isValidUserId, setIsValidUserId] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [isValidConfirmPassword, setIsValidConfirmPassword] = useState(false);
   const [showInvalidMessage, setShowInvalidMessage] = useState(false);
 
   const validateUserName = (username) => {

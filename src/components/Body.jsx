@@ -85,7 +85,7 @@ const Body = () => {
           )}
         </div>
       </div>
-      <div className="res-container relative">
+      <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 relative">
         {filteredList.map((restaurant) => {
           return (
             <Link to={"/resmenu/" + restaurant.info.id} style={{ textDecoration: 'none', color: 'inherit' }} key={restaurant.info.id}>

@@ -7,12 +7,13 @@ import Logout from './Logout';
 import { useSelector } from 'react-redux';
 import DarkModeToggle from './DarkModeToggle';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const onlineStatus = useOnline();
   const { userLogoLight, userLogoDark } = useContext(UserContext);
   const [showLogout, setShowLogout] = useState(false);
   const itemCart = useSelector((store) => store.cart.items);
+  const favCart=useSelector(store=>store.favourite.favouriteItems)
   const isDarkMode = document.body.classList.contains("dark");
   const color = isDarkMode ? 'white' : 'black';
   const toggleLogout = () => {
@@ -66,6 +67,12 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <Link to="/carts" className="relative font-semibold text-md dark:text-white text-gray-700 hover:text-gray-900">
               <ShoppingCart style={{ color, position: "relative", width: '30px', height: '28px' }} />
               <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">{itemCart.length}</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/favourite" className='relative font-semibold text-md dark:text-white text-gray-700 hover:text-gray-900' >
+              <FavoriteIcon style={{ color, position: "relative", width: '30px', height: '28px' }} />
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">{favCart.length}</span>
             </Link>
           </li>
           <li>

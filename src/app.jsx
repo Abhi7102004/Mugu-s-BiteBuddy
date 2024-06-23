@@ -11,10 +11,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
-import cartStore from "./utils/CartStore";
+import cartStore from "./utils/cartStore";
 import { BuyItems } from "./components/BuyItems";
 import { Review } from "./components/Review";
 import { Profile } from "./components/Profile";
+import FavoriteItems from "./components/FavoriteItems";
 const About = lazy(() => import("./components/About"));
 const AppLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,7 +60,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />, // Setter function is passed via context
+        element: <Login />, 
       },
       {
         path: "/register",
@@ -72,6 +73,10 @@ const appRouter = createBrowserRouter([
       {
         path:"/buy",
         element:<BuyItems/>
+      },
+      {
+        path:"/favourite",
+        element:<FavoriteItems/>
       },
       {
         path:"/profileview",

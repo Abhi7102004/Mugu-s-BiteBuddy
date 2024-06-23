@@ -6,9 +6,7 @@ const DarkModeToggle = () => {
     useEffect(() => {
         if (darkMode === "dark") {
             document.body.classList.add("dark");
-            // document.documentElement.classList.remove("light");
         } else {
-            // document.documentElement.classList.add("light");
             document.body.classList.remove("dark");
         }
     }, [darkMode]);
