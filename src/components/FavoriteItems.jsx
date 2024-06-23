@@ -26,7 +26,7 @@ const FavoriteItems = () => {
             <Link to="/">
               <div className="flex justify-center">
                 <button className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">
-                  Shop More
+                  Add Favourites
                 </button>
               </div>
             </Link>
