@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="swiggy-footer mt-5 dark:shadow-2xl dark:shadow-indigo-600 dark:bg-slate-900">
       <div className="footer-container mb-5">
         <div className="footer-col">
-          <h3 className='dark:text-white'>About Us</h3>
+          <Link to="/about"><h3 className='dark:text-white'>About Us</h3></Link>
           <ul>
             <li className='dark:text-white'>
               Who We Are
@@ -24,7 +24,7 @@ const Footer = () => {
           <ul>
             <li className='dark:text-white'>Help & Support</li>
             <li className='dark:text-white'>FAQs</li>
-            <li className='dark:text-white'>Contact</li>
+            <Link to="/contact"><li className='dark:text-white'>Contact</li></Link>
           </ul>
         </div>
         <div className="footer-col">

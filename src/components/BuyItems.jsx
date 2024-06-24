@@ -14,7 +14,7 @@ export const BuyItems = () => {
     };
     const total_cost = Items.reduce((sum, item) => {
         const price = item?.card?.info?.defaultPrice ? item.card.info.defaultPrice / 100 : item.card.info.price / 100;
-        return sum + price;
+        return sum + (price*item.count);
     }, 0);    
 
     return (
@@ -28,7 +28,7 @@ export const BuyItems = () => {
                         {Items.map((item, index) => (
                             <li key={index} className="flex justify-between border-b-[1px] border-b-gray-100 dark:bg-[#1f1d49] items-center bg-gray-50 p-2 rounded-md mb-2 shadow-sm">
                                 <span className="font-medium dark:text-white text-gray-900">{item?.card?.info?.name}</span>
-                                <span className="text-gray-600 dark:text-white">₹{item?.card?.info?.defaultPrice ? item.card.info.defaultPrice / 100 : item.card.info.price / 100}</span>
+                                <span className="text-gray-600 dark:text-white">₹{item?.card?.info?.defaultPrice ? (item.card.info.defaultPrice*item.count) / 100 : item.card.info.price*item.count / 100}</span>
                             </li>
                         ))}
                     </ul>

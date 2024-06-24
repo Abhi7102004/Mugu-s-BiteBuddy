@@ -48,7 +48,7 @@ const RestaurantCont = ({ resData }) => {
 
   return (
     <div className="res-card relative shadow-lg shadow-[#cacaca] dark:bg-gray-900 dark:shadow-lg dark:shadow-indigo-600">
-      <div className="res-logo-cont relative">
+      <div className="res-logo-cont">
         <img
           className="res-logo w-full"
           src={LOGO_URL + resData.info.cloudinaryImageId}
@@ -56,7 +56,7 @@ const RestaurantCont = ({ resData }) => {
         />
         <IconButton
           onClick={handleFavourite}
-          className="absolute bottom-4 left-44"
+          className="absolute bottom-4 -right-40"
           style={{
             zIndex: 10,
             width: "40px",
