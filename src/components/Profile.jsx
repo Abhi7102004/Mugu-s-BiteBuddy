@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export const Profile = () => {
     const user = {
@@ -26,35 +27,70 @@ export const Profile = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg dark:shadow-md dark:shadow-indigo-600 dark:bg-[#191740] overflow-hidden my-4 dark:text-white">
+        <motion.div
+            className="max-w-md mx-auto bg-white shadow-lg rounded-lg dark:shadow-md dark:shadow-indigo-600 dark:bg-[#191740] overflow-hidden my-4 dark:text-white"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
+        >
             <div className="px-6 py-4">
                 <div className="text-center">
-                    <h2 className="font-bold text-2xl mb-2">{user.username}</h2>
-                    <p className="text-gray-600 text-lg dark:text-gray-300">{user.email}</p>
+                    <motion.h2
+                        className="font-bold text-2xl mb-2"
+                        initial={{ y: -10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {user.username}
+                    </motion.h2>
+                    <p className="text-gray-600 text-lg dark:text-gray-300">
+                        {user.email}
+                    </p>
                 </div>
                 <div className="mt-4">
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <motion.p
+                        className="text-gray-700 dark:text-gray-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <strong>Account Creation Date:</strong> {user.accountCreationDate}
-                    </p>
-                    <p className="text-gray-700 mt-2 dark:text-gray-300">
+                    </motion.p>
+                    <motion.p
+                        className="text-gray-700 mt-2 dark:text-gray-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                    >
                         <strong>Favorite Cuisine:</strong> {user.favoriteCuisine}
-                    </p>
-                    <p className="text-gray-700 mt-2 dark:text-gray-300">
+                    </motion.p>
+                    <motion.p
+                        className="text-gray-700 mt-2 dark:text-gray-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, delay: 0.2 }}
+                    >
                         <strong>Favorite Restaurant:</strong> {user.favoriteRestaurant}
-                    </p>
+                    </motion.p>
                     <div className="mt-4">
                         <h3 className="text-lg font-semibold mb-2 dark:text-gray-300">Recent Orders:</h3>
                         {user.recentOrders.map(order => (
-                            <div key={order.id} className="border border-gray-200 dark:border-gray-600 p-4 rounded mb-2">
+                            <motion.div
+                                key={order.id}
+                                className="border border-gray-200 dark:border-gray-600 p-4 rounded mb-2"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
                                 <p><strong>Restaurant:</strong> {order.restaurant}</p>
                                 <p><strong>Items:</strong> {order.items.join(", ")}</p>
                                 <p><strong>Total:</strong> ${order.total.toFixed(2)}</p>
                                 <p><strong>Date:</strong> {order.date}</p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

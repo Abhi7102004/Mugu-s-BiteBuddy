@@ -4,11 +4,12 @@ import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import { clearCart } from "../utils/cartSlice";
 import { EmptyCart } from "./EmptyCart";
+import { motion } from "framer-motion";
 
 const Carts = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const { isLoggedIn } = useOutletContext();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [showLoginMessage, setShowLoginMessage] = useState(false);
   const dispatch = useDispatch();
 
@@ -18,58 +19,82 @@ const Carts = () => {
       const timer = setTimeout(() => {
         setShowLoginMessage(false);
         navigate("/login");
-      }, 2000); 
+      }, 2000);
       return () => clearTimeout(timer);
     }
   };
 
   return (
-    <div>
-      <h2 className="text-center text-2xl my-3 font-noto-sans font-bold dark:text-white">Carts</h2>
-      <div className="w-8/12 mx-auto">
+    <div className="p-6">
+      <motion.h2
+        className="text-center text-3xl my-5 font-bold text-gray-800 dark:text-white"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Carts
+      </motion.h2>
+      <div className="w-10/12 mx-auto mb-8">
         <CartItemCard items={cartItems} />
       </div>
-      {cartItems.length === 0 && <EmptyCart />}
-      {cartItems.length > 0 && (
-        <div className="flex items-center justify-center gap-20">
-          <Link to="/">
-            <div className="flex justify-center">
-              <button className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">
+      {cartItems.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <div className="flex flex-col gap-6 items-center">
+          <motion.div
+            className="flex gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link to="/">
+              <motion.button
+                className="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Shop More
-              </button>
-            </div>
-          </Link>
-          <div className="flex justify-center">
-            <button
+              </motion.button>
+            </Link>
+            <motion.button
               onClick={() => dispatch(clearCart())}
-              className="px-4 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white"
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Clear Cart
-            </button>
-          </div>
-          {isLoggedIn ? (
-            <Link to="/buy">
-              <div className="flex justify-center">
-                <button className="px-7 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white">
+            </motion.button>
+            {isLoggedIn ? (
+              <Link to="/buy">
+                <motion.button
+                  className="px-8 py-3 bg-blue-500 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   Buy Now
-                </button>
-              </div>
-            </Link>
-          ) : (
-            <div className="flex justify-center">
-              <button
+                </motion.button>
+              </Link>
+            ) : (
+              <motion.button
                 onClick={handleBuyClick}
-                className="px-7 dark:mt-10 dark:bg-indigo-200 dark:text-black dark:hover:bg-indigo-300 cursor-pointer hover:bg-indigo-600 transition-all ease-in-out duration-200 py-2 my-5 rounded-lg font-reddit-mono bg-blue-500 text-white"
+                className="px-8 py-3 bg-blue-500 text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Buy Now
-              </button>
-            </div>
+              </motion.button>
+            )}
+          </motion.div>
+          {showLoginMessage && (
+            <motion.div
+              className="text-center text-red-500 dark:text-red-200 mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Please log In or Register to proceed with your purchase.
+            </motion.div>
           )}
-        </div>
-      )}
-      {showLoginMessage && (
-        <div className="text-center dark:text-red-200 text-red-500 pb-4">
-          Please log In or Register to proceed with your purchase.
         </div>
       )}
     </div>
